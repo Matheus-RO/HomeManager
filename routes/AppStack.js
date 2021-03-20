@@ -8,8 +8,8 @@ const { Navigator, Screen } = createStackNavigator();
 function AppStack() {
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false }}>
-        <Screen name="ShoppList" component={ShoppList} />
+      <Navigator screenOptions={{ headerShown: true }} >
+        <Screen name="Lista de compras" component={ShoppList} />
       </Navigator>
     </NavigationContainer>
   )
