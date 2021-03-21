@@ -1,39 +1,33 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Checkbox, IconButton, TextInput } from 'react-native-paper';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-  rowBlock: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-});
+import { View } from 'react-native'
+import { Checkbox, IconButton, TextInput, Text, Subheading } from 'react-native-paper';
+import styles from './styles';
 
 const ShoppList = () => {
 
-  const [checked, setChecked] = useState(false);
   const [itemTextInput, setItemTextInput] = useState('');
   const [priceTextInput, setPriceTextInput] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [quantidadeTextInput, setQuantidadeTextInput] = useState('');
 
   return (
-    <View>
+    <View style={styles.container}>
+
+      <Subheading>Adicionar item</Subheading>
+      <TextInput
+        style={{ backgroundColor: '#FFF', width: '100%' }}
+        placeholder="Digite um item"
+        label="Item"
+      />
       <View style={styles.rowBlock}>
         <TextInput
-          style={{ backgroundColor: '#FFF', width: '50%' }}
-          placeholder="Digite um item"
+          style={{ backgroundColor: '#FFF', width: '35%' }}
+          label="Quant."
+          placeholder="Quantidade"
         />
         <TextInput
-          style={{ backgroundColor: '#FFF', width: '35%' }}
+          style={{ backgroundColor: '#FFF', width: '45%' }}
+          label="Valor"
           placeholder="Valor R$"
         />
         <IconButton
@@ -43,6 +37,7 @@ const ShoppList = () => {
         />
       </View>
 
+      <Subheading>Compras</Subheading>
       <View style={styles.rowBlock}>
         <Checkbox
           status={checked ? 'checked' : 'unchecked'}
@@ -52,14 +47,22 @@ const ShoppList = () => {
         />
 
         <TextInput
-          placeholder="Item"
+          style={{ backgroundColor: '#f0f0f7', width: '10%' }}
+          label="Quant."
+          value={quantidadeTextInput}
+          onChangeText={text => setQuantidadeTextInput(text)}
+        />
+
+        <TextInput
+          style={{ backgroundColor: '#f0f0f7', width: '30%' }}
+          label="Item"
           value={itemTextInput}
           onChangeText={text => setItemTextInput(text)}
         />
 
         <TextInput
-
-          placeholder="Valor"
+          style={{ backgroundColor: '#f0f0f7', width: '10%' }}
+          label="Valor"
           value={priceTextInput}
           onChangeText={text => setPriceTextInput(text)}
         />
@@ -74,14 +77,13 @@ const ShoppList = () => {
       <View style={styles.rowBlock}>
         <TextInput
 
-          style={{ backgroundColor: '#FFF', width: '50%' }}
+          style={{ backgroundColor: '#f0f0f7', width: '70%' }}
           label="Valor estimado"
-          placeholder="Adicione o total estimado"
+          placeholder="Total estimado (R$)"
         />
-        <TextInput
-          disabled="false"
-          placeholder="R$ 00,00"
-        />
+        <Text>
+          Total: R$ 00,00
+        </Text>
       </View>
 
     </View>
