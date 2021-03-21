@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
-import { Checkbox, IconButton, TextInput, Text, Subheading } from 'react-native-paper';
+import { IconButton, TextInput, Text, Subheading } from 'react-native-paper';
+import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
 
 const ShoppList = () => {
@@ -39,12 +40,20 @@ const ShoppList = () => {
 
       <Subheading>Compras</Subheading>
       <View style={styles.rowBlock}>
-        <Checkbox
+
+        <CheckBox
+          value={checked}
+          onValueChange={() => {
+            setChecked(!checked);
+          }}
+        />
+
+        {/* <Checkbox
           status={checked ? 'checked' : 'unchecked'}
           onPress={() => {
             setChecked(!checked);
           }}
-        />
+        /> */}
 
         <TextInput
           style={{ backgroundColor: '#f0f0f7', width: '10%' }}
