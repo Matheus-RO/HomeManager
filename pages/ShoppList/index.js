@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   rowBlock: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
 
@@ -28,9 +29,11 @@ const ShoppList = () => {
     <View>
       <View style={styles.rowBlock}>
         <TextInput
+          style={{ backgroundColor: '#FFF', width: '50%' }}
           placeholder="Digite um item"
         />
         <TextInput
+          style={{ backgroundColor: '#FFF', width: '35%' }}
           placeholder="Valor R$"
         />
         <IconButton
@@ -51,14 +54,14 @@ const ShoppList = () => {
         <TextInput
           placeholder="Item"
           value={itemTextInput}
-          onChangeText={itemTextInput => setItemTextInput(itemTextInput)}
+          onChangeText={text => setItemTextInput(text)}
         />
 
         <TextInput
 
           placeholder="Valor"
           value={priceTextInput}
-          onChangeText={priceTextInput => setPriceTextInput(priceTextInput)}
+          onChangeText={text => setPriceTextInput(text)}
         />
 
         <IconButton
@@ -70,7 +73,8 @@ const ShoppList = () => {
 
       <View style={styles.rowBlock}>
         <TextInput
-          mode="outline"
+
+          style={{ backgroundColor: '#FFF', width: '50%' }}
           label="Valor estimado"
           placeholder="Adicione o total estimado"
         />
