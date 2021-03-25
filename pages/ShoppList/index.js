@@ -10,35 +10,51 @@ const ShoppList = () => {
   const [priceTextInput, setPriceTextInput] = useState('');
   const [checked, setChecked] = useState(false);
   const [quantidadeTextInput, setQuantidadeTextInput] = useState('');
+  const [panelItemExpanded, setPanelItemExpanded] = useState(false);
 
   return (
     <View style={styles.container}>
 
-      <Subheading>Adicionar item</Subheading>
-      <TextInput
-        style={{ backgroundColor: '#FFF', width: '100%' }}
-        placeholder="Digite um item"
-        label="Item"
-      />
       <View style={styles.rowBlock}>
-        <TextInput
-          style={{ backgroundColor: '#FFF', width: '35%' }}
-          label="Quant."
-          placeholder="Quantidade"
-        />
-        <TextInput
-          style={{ backgroundColor: '#FFF', width: '45%' }}
-          label="Valor"
-          placeholder="Valor R$"
-        />
+        <Subheading >
+          Adicionar item
+        </Subheading>
         <IconButton
-          icon="plus-circle"
+          icon={panelItemExpanded ? "chevron-up" : "chevron-down"}
           size={30}
-          onPress={() => null}
+          onPress={() => { setPanelItemExpanded(!panelItemExpanded); }}
         />
+
       </View>
 
-      <Subheading>Compras</Subheading>
+      {panelItemExpanded &&
+        <View>
+          <TextInput
+            style={{ backgroundColor: '#FFF', width: '100%' }}
+            placeholder="Digite um item"
+            label="Item"
+          />
+          <View style={styles.rowBlock} >
+            <TextInput
+              style={{ backgroundColor: '#FFF', width: '35%' }}
+              label="Quant."
+              placeholder="Quantidade"
+            />
+            <TextInput
+              style={{ backgroundColor: '#FFF', width: '45%' }}
+              label="Valor"
+              placeholder="Valor R$"
+            />
+            <IconButton
+              icon="plus-circle"
+              size={30}
+              onPress={() => null}
+            />
+          </View>
+        </View>
+      }
+
+      <Subheading >Compras</Subheading>
       <View style={styles.rowBlock}>
 
         <CheckBox
