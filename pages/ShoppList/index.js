@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
-import { IconButton, TextInput, Text, Subheading } from 'react-native-paper';
+import { IconButton, TextInput, Text, Subheading, Card, DefaultTheme } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    accent: '#f1c40f',
+  },
+};
 
 const ShoppList = () => {
 
@@ -12,10 +22,13 @@ const ShoppList = () => {
   const [quantidadeTextInput, setQuantidadeTextInput] = useState('');
   const [panelItemExpanded, setPanelItemExpanded] = useState(false);
 
+
   return (
     <View style={styles.container}>
 
-      <View style={styles.rowBlock}>
+      <View
+        style={{ ...styles.rowBlock, ...styles.panelAddAcordion }}
+      >
         <Subheading >
           Adicionar item
         </Subheading>
@@ -28,22 +41,25 @@ const ShoppList = () => {
       </View>
 
       {panelItemExpanded &&
-        <View>
+        <View style={styles.panelAcordion}>
           <TextInput
             style={{ backgroundColor: '#FFF', width: '100%' }}
             placeholder="Digite um item"
             label="Item"
+            mode="outlined"
           />
           <View style={styles.rowBlock} >
             <TextInput
               style={{ backgroundColor: '#FFF', width: '35%' }}
               label="Quant."
               placeholder="Quantidade"
+              mode="outlined"
             />
             <TextInput
               style={{ backgroundColor: '#FFF', width: '45%' }}
               label="Valor"
               placeholder="Valor R$"
+              mode="outlined"
             />
             <IconButton
               icon="plus-circle"
@@ -55,49 +71,55 @@ const ShoppList = () => {
       }
 
       <Subheading >Compras</Subheading>
-      <View style={styles.rowBlock}>
+      <Card style={{ margin: 15 }} >
+        <View style={{ paddingLeft: 5, paddingRight: 5, paddingBottom: 20, paddingTop: 20 }}>
+          <TextInput
+            style={{
+              backgroundColor: '#fff',
+              width: '100%',
+              fontSize: 22,
+              fontWeight: 'bold',
+              height: 40
+            }}
+            underlineColor="#FFF"
+            value={itemTextInput}
+            onChangeText={text => setItemTextInput(text)}
+            theme={theme}
+          />
+        </View>
+        <Card.Content>
+          <View style={styles.rowBlock}>
 
-        <CheckBox
-          value={checked}
-          onValueChange={() => {
-            setChecked(!checked);
-          }}
-        />
+            <CheckBox
+              value={checked}
+              onValueChange={() => {
+                setChecked(!checked);
+              }}
+            />
 
-        {/* <Checkbox
-          status={checked ? 'checked' : 'unchecked'}
-          onPress={() => {
-            setChecked(!checked);
-          }}
-        /> */}
+            <TextInput
+              style={{ backgroundColor: '#f0f0f7', width: '35%' }}
+              label="Quant."
+              value={quantidadeTextInput}
+              onChangeText={text => setQuantidadeTextInput(text)}
+            />
 
-        <TextInput
-          style={{ backgroundColor: '#f0f0f7', width: '10%' }}
-          label="Quant."
-          value={quantidadeTextInput}
-          onChangeText={text => setQuantidadeTextInput(text)}
-        />
 
-        <TextInput
-          style={{ backgroundColor: '#f0f0f7', width: '30%' }}
-          label="Item"
-          value={itemTextInput}
-          onChangeText={text => setItemTextInput(text)}
-        />
+            <TextInput
+              style={{ backgroundColor: '#f0f0f7', width: '35%' }}
+              label="Valor"
+              value={priceTextInput}
+              onChangeText={text => setPriceTextInput(text)}
+            />
 
-        <TextInput
-          style={{ backgroundColor: '#f0f0f7', width: '10%' }}
-          label="Valor"
-          value={priceTextInput}
-          onChangeText={text => setPriceTextInput(text)}
-        />
-
-        <IconButton
-          icon="delete"
-          size={30}
-          onPress={() => null}
-        />
-      </View>
+            <IconButton
+              icon="delete"
+              size={30}
+              onPress={() => null}
+            />
+          </View>
+        </Card.Content>
+      </Card>
 
       <View style={styles.rowBlock}>
         <TextInput

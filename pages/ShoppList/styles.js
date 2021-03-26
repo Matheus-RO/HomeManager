@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  panelAcordion: {
+    padding: 20,
+  },
+  panelAddAcordion: {
+    paddingLeft: 20,
+    paddingRight: 10,
+    paddingTop: 20,
+  },
 });
 
 export default styles;
