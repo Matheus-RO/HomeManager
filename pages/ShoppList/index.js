@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { View, KeyboardAvoidingView, Platform } from 'react-native'
 import { IconButton, TextInput, Text, Subheading, Card, DefaultTheme } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
@@ -71,56 +71,64 @@ const ShoppList = () => {
       }
 
       <Subheading >Compras</Subheading>
-      <Card style={{ margin: 15 }} >
-        <View style={{ paddingLeft: 5, paddingRight: 5, paddingBottom: 20, paddingTop: 20 }}>
-          <TextInput
-            style={{
-              backgroundColor: '#fff',
-              width: '100%',
-              fontSize: 22,
-              fontWeight: 'bold',
-              height: 40
-            }}
-            underlineColor="#FFF"
-            value={itemTextInput}
-            onChangeText={text => setItemTextInput(text)}
-            theme={theme}
-          />
-        </View>
-        <Card.Content>
-          <View style={styles.rowBlock}>
 
-            <CheckBox
-              value={checked}
-              onValueChange={() => {
-                setChecked(!checked);
+
+      {/* Estudar melhor esse componente. Ainda não está com o comportamento desejado */}
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <Card style={{ margin: 15 }} >
+          <View style={{ paddingLeft: 5, paddingRight: 5, paddingBottom: 20, paddingTop: 20 }}>
+            <TextInput
+              style={{
+                backgroundColor: '#fff',
+                width: '100%',
+                fontSize: 22,
+                fontWeight: 'bold',
+                height: 40
               }}
-            />
-
-            <TextInput
-              style={{ backgroundColor: '#f0f0f7', width: '35%' }}
-              label="Quant."
-              value={quantidadeTextInput}
-              onChangeText={text => setQuantidadeTextInput(text)}
-            />
-
-
-            <TextInput
-              style={{ backgroundColor: '#f0f0f7', width: '35%' }}
-              label="Valor"
-              value={priceTextInput}
-              onChangeText={text => setPriceTextInput(text)}
-            />
-
-            <IconButton
-              icon="delete"
-              size={30}
-              onPress={() => null}
+              underlineColor="#FFF"
+              value={itemTextInput}
+              onChangeText={text => setItemTextInput(text)}
+              theme={theme}
             />
           </View>
-        </Card.Content>
-      </Card>
+          <Card.Content>
+            <View style={styles.rowBlock}>
 
+              <CheckBox
+                value={checked}
+                onValueChange={() => {
+                  setChecked(!checked);
+                }}
+              />
+
+              <TextInput
+                style={{ backgroundColor: '#f0f0f7', width: '35%', height: 40, fontSize: 12 }}
+                label="Quant."
+                value={quantidadeTextInput}
+                onChangeText={text => setQuantidadeTextInput(text)}
+              />
+
+
+              <TextInput
+                style={{ backgroundColor: '#f0f0f7', width: '35%', height: 40, fontSize: 16 }}
+                placeholder="Valor"
+
+                value={priceTextInput}
+                onChangeText={text => setPriceTextInput(text)}
+              />
+
+              <IconButton
+                icon="delete"
+                size={30}
+                onPress={() => null}
+              />
+            </View>
+          </Card.Content>
+        </Card>
+      </KeyboardAvoidingView>
       <View style={styles.rowBlock}>
         <TextInput
 
