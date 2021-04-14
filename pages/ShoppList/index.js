@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView, Platform } from 'react-native'
 import { IconButton, TextInput, Text, Subheading, Card, DefaultTheme } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './styles';
+import InputSpinner from 'react-native-input-spinner';
 
 const theme = {
   ...DefaultTheme,
@@ -19,7 +20,7 @@ const ShoppList = () => {
   const [itemTextInput, setItemTextInput] = useState('');
   const [priceTextInput, setPriceTextInput] = useState('');
   const [checked, setChecked] = useState(false);
-  const [quantidadeTextInput, setQuantidadeTextInput] = useState('');
+  const [quantidadeTextInput, setQuantidadeTextInput] = useState(1);
   const [panelItemExpanded, setPanelItemExpanded] = useState(false);
 
 
@@ -104,12 +105,27 @@ const ShoppList = () => {
                 }}
               />
 
-              <TextInput
+              <InputSpinner
+                max={10}
+                min={0}
+                step={1}
+                colorMax={"#f04048"}
+                colorMin={"#40c5f4"}
+                value={quantidadeTextInput}
+                onChange={(num) => {
+                  setQuantidadeTextInput(num);
+                }}
+                skin="modern"
+                height={40}
+                buttonStyle={{ width: '10%' }}
+                inputStyle={{ width: '10%', padding: 0 }}
+              />
+              {/* <TextInput
                 style={{ backgroundColor: '#f0f0f7', width: '35%', height: 40, fontSize: 12 }}
                 label="Quant."
                 value={quantidadeTextInput}
                 onChangeText={text => setQuantidadeTextInput(text)}
-              />
+              /> */}
 
 
               <TextInput
